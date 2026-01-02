@@ -11,7 +11,7 @@ MODULE_ID = "reports"
 MODULE_NAME = _("Reports")
 MODULE_ICON = "bar-chart-outline"
 MODULE_VERSION = "1.0.0"
-MODULE_CATEGORY = "reporting"
+MODULE_CATEGORY = "analytics"  # Changed from "reporting" (merged)
 
 # Target Industries (business verticals this module is designed for)
 MODULE_INDUSTRIES = [
@@ -20,8 +20,8 @@ MODULE_INDUSTRIES = [
     "restaurant",   # Restaurants
     "bar",          # Bars & pubs
     "cafe",         # Cafes & bakeries
-    "salon",        # Beauty & wellness
-    "professional", # Professional services
+    "beauty",       # Beauty & wellness
+    "consulting",   # Professional services
     "ecommerce",    # E-commerce
 ]
 
