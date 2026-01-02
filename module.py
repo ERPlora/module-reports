@@ -13,6 +13,18 @@ MODULE_ICON = "bar-chart-outline"
 MODULE_VERSION = "1.0.0"
 MODULE_CATEGORY = "reporting"
 
+# Target Industries (business verticals this module is designed for)
+MODULE_INDUSTRIES = [
+    "retail",       # Retail stores
+    "wholesale",    # Wholesale distributors
+    "restaurant",   # Restaurants
+    "bar",          # Bars & pubs
+    "cafe",         # Cafes & bakeries
+    "salon",        # Beauty & wellness
+    "professional", # Professional services
+    "ecommerce",    # E-commerce
+]
+
 # Sidebar Menu Configuration
 MENU = {
     "label": _("Reports"),
