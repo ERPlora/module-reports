@@ -1,0 +1,23 @@
+{% load djicons i18n %}
+
+<div class="p-4">
+
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">{% icon "document-text-outline" css_class="text-primary" %} {% trans "Reports" %}</h3>
+            <div class="flex gap-2">
+                <button class="btn btn-sm color-primary" disabled>
+                    {% icon "add-outline" %}
+                    {% trans "Add" %}
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="p-6 text-center text-base-content/50">
+                {% icon "document-text-outline" css_class="text-3xl mb-2" %}
+                <p class="text-sm">{% trans "No records yet. Get started by adding your first entry." %}</p>
+            </div>
+        </div>
+    </div>
+
+</div>

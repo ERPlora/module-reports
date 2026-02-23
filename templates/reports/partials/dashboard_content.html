@@ -1,0 +1,59 @@
+        {% load djicons i18n %}
+
+        <div class="p-4">
+
+            <!-- Welcome Card -->
+            <div class="card mb-6">
+                <div class="card-body p-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
+                            {% icon "document-text-outline" css_class="text-2xl text-primary" %}
+                        </div>
+                        <div>
+                            <h2 class="text-lg font-semibold">{% trans "Custom Reports" %}</h2>
+                            <p class="text-sm text-base-content/60">{% trans "Custom report builder and saved reports" %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">{% icon "flash-outline" css_class="text-primary" %} {% trans "Quick Actions" %}</h3>
+                </div>
+                <div class="card-body p-0">
+                    <div class="list">
+        <a hx-get="{% url 'reports:reports' %}"
+   hx-target="#main-content-area"
+   hx-push-url="true"
+   class="list-item list-item-clickable">
+    <div class="list-item-start">
+        {% icon "document-text-outline" css_class="text-xl text-primary" %}
+    </div>
+    <div class="list-item-content">
+        <div class="list-item-label">{% trans "Reports" %}</div>
+    </div>
+    <div class="list-item-end">
+        <span class="list-item-chevron"></span>
+    </div>
+</a>
+<a hx-get="{% url 'reports:settings' %}"
+   hx-target="#main-content-area"
+   hx-push-url="true"
+   class="list-item list-item-clickable">
+    <div class="list-item-start">
+        {% icon "settings-outline" css_class="text-xl text-primary" %}
+    </div>
+    <div class="list-item-content">
+        <div class="list-item-label">{% trans "Settings" %}</div>
+    </div>
+    <div class="list-item-end">
+        <span class="list-item-chevron"></span>
+    </div>
+</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>

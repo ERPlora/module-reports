@@ -1,0 +1,39 @@
+{% load djicons i18n %}
+
+<div class="p-4">
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <h3 class="card-title">{% icon "settings-outline" css_class="text-primary" %} {% trans "Settings" %}</h3>
+        </div>
+        <div class="card-body">
+            <p class="text-base-content/60">{% trans "Module settings will be available here." %}</p>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">{% icon "flash-outline" css_class="text-primary" %} {% trans "Quick Actions" %}</h3>
+        </div>
+        <div class="card-body p-0">
+            <div class="list">
+                <a hx-get="{% url 'reports:dashboard' %}"
+                   hx-target="#main-content-area"
+                   hx-push-url="true"
+                   class="list-item list-item-clickable">
+                    <div class="list-item-start">
+                        {% icon "speedometer-outline" css_class="text-xl text-primary" %}
+                    </div>
+                    <div class="list-item-content">
+                        <div class="list-item-label">{% trans "Dashboard" %}</div>
+                    </div>
+                    <div class="list-item-end">
+                        <span class="list-item-chevron"></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
