@@ -4,7 +4,7 @@ Custom Reports Module Views
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
 
-from apps.accounts.decorators import login_required
+from apps.accounts.decorators import login_required, permission_required
 from apps.core.htmx import htmx_view
 from apps.modules_runtime.navigation import with_module_nav
 
@@ -28,6 +28,7 @@ def reports(request):
 
 
 @login_required
+@permission_required('reports.manage_settings')
 @with_module_nav('reports', 'settings')
 @htmx_view('reports/pages/settings.html', 'reports/partials/settings_content.html')
 def settings(request):
