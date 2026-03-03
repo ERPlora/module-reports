@@ -30,3 +30,17 @@ PERMISSIONS = [
 'reports.run_report',
 'reports.manage_settings',
 ]
+
+ROLE_PERMISSIONS = {
+    "admin": ["*"],
+    "manager": [
+        "add_report",
+        "change_report",
+        "run_report",
+        "view_report",
+    ],
+    "employee": [
+        "add_report",
+        "view_report",
+    ],
+}
