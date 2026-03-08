@@ -151,7 +151,7 @@ class ReportService:
             total_sum=Sum('total'),
             count=Count('id'),
             avg_val=Avg('total'),
-            items=Sum('items_count')
+            items=Count('items')
         )
 
         total_sales = metrics['total_sum'] or Decimal('0.00')
@@ -241,7 +241,7 @@ class ReportService:
             'product_name'
         ).annotate(
             qty=Sum('quantity'),
-            revenue=Sum('total'),
+            revenue=Sum('line_total'),
             avg_price=Avg('unit_price')
         )
 
@@ -286,7 +286,7 @@ class ReportService:
             status='completed'
         ).values(
             'employee_id',
-            'employee_name'
+            'employee__name'
         ).annotate(
             total_sum=Sum('total'),
             count=Count('id'),
@@ -296,7 +296,7 @@ class ReportService:
         return [
             EmployeePerformance(
                 employee_id=str(emp['employee_id'] or ''),
-                employee_name=emp['employee_name'] or 'Unknown',
+                employee_name=emp['employee__name'] or 'Unknown',
                 total_sales=emp['total_sum'] or Decimal('0.00'),
                 transactions=emp['count'] or 0,
                 average_ticket=emp['avg_val'] or Decimal('0.00')
@@ -390,7 +390,7 @@ class ReportService:
             created_at__date__gte=start_date,
             created_at__date__lte=end_date,
             status='completed'
-        ).values('payment_method').annotate(
+        ).values('payment_method_name').annotate(
             total_sum=Sum('total'),
             count=Count('id')
         ).order_by('-total_sum')
@@ -400,7 +400,7 @@ class ReportService:
 
         return [
             {
-                'method': m['payment_method'] or 'Unknown',
+                'method': m['payment_method_name'] or 'Unknown',
                 'total': m['total_sum'] or Decimal('0.00'),
                 'transactions': m['count'] or 0,
                 'percentage': float(
