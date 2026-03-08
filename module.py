@@ -16,19 +16,19 @@ MENU = {
 
 NAVIGATION = [
     {'label': _('Dashboard'), 'icon': 'speedometer-outline', 'id': 'dashboard'},
-{'label': _('Reports'), 'icon': 'document-text-outline', 'id': 'reports'},
-{'label': _('Settings'), 'icon': 'settings-outline', 'id': 'settings'},
+    {'label': _('Reports'), 'icon': 'document-text-outline', 'id': 'reports'},
+    {'label': _('Settings'), 'icon': 'settings-outline', 'id': 'settings'},
 ]
 
 DEPENDENCIES = []
 
 PERMISSIONS = [
     'reports.view_report',
-'reports.add_report',
-'reports.change_report',
-'reports.delete_report',
-'reports.run_report',
-'reports.manage_settings',
+    'reports.add_report',
+    'reports.change_report',
+    'reports.delete_report',
+    'reports.run_report',
+    'reports.manage_settings',
 ]
 
 ROLE_PERMISSIONS = {
