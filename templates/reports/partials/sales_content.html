@@ -1,0 +1,112 @@
+{% load djicons i18n %}
+
+<div class="p-4">
+
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-6">
+        <div>
+            <h2 class="text-lg font-semibold">{% trans "Sales Report" %}</h2>
+            <p class="text-sm text-base-content/60">{{ start_date|date:"d/m/Y" }} — {{ end_date|date:"d/m/Y" }}</p>
+        </div>
+        <a hx-get="{% url 'reports:dashboard' %}"
+           hx-target="#main-content-area"
+           hx-push-url="true"
+           class="btn btn-ghost btn-sm">
+            {% icon "arrow-back-outline" css_class="mr-1" %}
+            {% trans "Back" %}
+        </a>
+    </div>
+
+    <!-- KPI Cards -->
+    {% if kpi %}
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <div class="card">
+            <div class="card-body p-4 text-center">
+                <div class="text-sm text-base-content/60">{% trans "Total Sales" %}</div>
+                <div class="text-2xl font-bold">{{ kpi.total_sales }}</div>
+                {% if kpi.sales_change_pct != None %}
+                <div class="text-xs {% if kpi.sales_change_pct >= 0 %}text-success{% else %}text-error{% endif %}">
+                    {{ kpi.sales_change_pct|floatformat:1 }}%
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body p-4 text-center">
+                <div class="text-sm text-base-content/60">{% trans "Transactions" %}</div>
+                <div class="text-2xl font-bold">{{ kpi.total_transactions }}</div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body p-4 text-center">
+                <div class="text-sm text-base-content/60">{% trans "Avg. Ticket" %}</div>
+                <div class="text-2xl font-bold">{{ kpi.average_ticket }}</div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body p-4 text-center">
+                <div class="text-sm text-base-content/60">{% trans "Net Sales" %}</div>
+                <div class="text-2xl font-bold">{{ kpi.net_sales }}</div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Daily Sales -->
+    {% if daily_sales %}
+    <div class="card mb-6">
+        <div class="card-header">
+            <h3 class="card-title">{% icon "bar-chart-outline" css_class="text-primary" %} {% trans "Daily Sales" %}</h3>
+        </div>
+        <div class="card-body p-0">
+            <div class="list">
+                {% for day in daily_sales %}
+                <div class="list-item">
+                    <div class="list-item-content">
+                        <div class="list-item-label">{{ day.date|date:"d/m/Y" }}</div>
+                        <div class="list-item-note">{{ day.transactions }} {% trans "transactions" %}</div>
+                    </div>
+                    <div class="list-item-end font-semibold">
+                        {{ day.total }}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Payment Methods -->
+    {% if payment_methods %}
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">{% icon "card-outline" css_class="text-primary" %} {% trans "Payment Methods" %}</h3>
+        </div>
+        <div class="card-body p-0">
+            <div class="list">
+                {% for pm in payment_methods %}
+                <div class="list-item">
+                    <div class="list-item-content">
+                        <div class="list-item-label">{{ pm.method }}</div>
+                        <div class="list-item-note">{{ pm.transactions }} {% trans "transactions" %} &middot; {{ pm.percentage|floatformat:1 }}%</div>
+                    </div>
+                    <div class="list-item-end font-semibold">
+                        {{ pm.total }}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if not daily_sales and not payment_methods %}
+    <div class="card">
+        <div class="card-body text-center py-12 text-base-content/60">
+            {% icon "document-text-outline" css_class="text-5xl block mx-auto mb-2" %}
+            <p>{% trans "No sales data for this period" %}</p>
+        </div>
+    </div>
+    {% endif %}
+
+</div>

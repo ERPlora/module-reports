@@ -1,0 +1,69 @@
+{% load djicons i18n %}
+
+<div class="p-4">
+
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-6">
+        <div>
+            <h2 class="text-lg font-semibold">{% trans "Product Performance" %}</h2>
+            <p class="text-sm text-base-content/60">{{ start_date|date:"d/m/Y" }} — {{ end_date|date:"d/m/Y" }}</p>
+        </div>
+        <a hx-get="{% url 'reports:dashboard' %}"
+           hx-target="#main-content-area"
+           hx-push-url="true"
+           class="btn btn-ghost btn-sm">
+            {% icon "arrow-back-outline" css_class="mr-1" %}
+            {% trans "Back" %}
+        </a>
+    </div>
+
+    <!-- Sort Toggle -->
+    <div class="flex gap-2 mb-4">
+        <a hx-get="{% url 'reports:products' %}?order_by=revenue"
+           hx-target="#main-content-area"
+           hx-push-url="true"
+           class="btn btn-sm {% if order_by == 'revenue' %}color-primary{% else %}btn-ghost{% endif %}">
+            {% trans "By Revenue" %}
+        </a>
+        <a hx-get="{% url 'reports:products' %}?order_by=quantity"
+           hx-target="#main-content-area"
+           hx-push-url="true"
+           class="btn btn-sm {% if order_by == 'quantity' %}color-primary{% else %}btn-ghost{% endif %}">
+            {% trans "By Quantity" %}
+        </a>
+    </div>
+
+    <!-- Products List -->
+    {% if products %}
+    <div class="card">
+        <div class="card-body p-0">
+            <div class="list">
+                {% for product in products %}
+                <div class="list-item">
+                    <div class="list-item-start">
+                        <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                            <span class="text-sm font-bold text-primary">{{ forloop.counter }}</span>
+                        </div>
+                    </div>
+                    <div class="list-item-content">
+                        <div class="list-item-label">{{ product.product_name }}</div>
+                        <div class="list-item-note">{{ product.quantity_sold }} {% trans "units" %} &middot; {% trans "Avg." %} {{ product.average_price }}</div>
+                    </div>
+                    <div class="list-item-end font-semibold">
+                        {{ product.total_revenue }}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="card">
+        <div class="card-body text-center py-12 text-base-content/60">
+            {% icon "cube-outline" css_class="text-5xl block mx-auto mb-2" %}
+            <p>{% trans "No product data for this period" %}</p>
+        </div>
+    </div>
+    {% endif %}
+
+</div>
