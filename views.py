@@ -283,3 +283,10 @@ def api_payment_methods(request):
             for m in methods
         ]
     })
+
+
+@require_http_methods(['GET'])
+@login_required
+@htmx_view('reports/pages/settings.html', 'reports/partials/settings_content.html')
+def settings(request):
+    return {'page_title': 'Settings'}
