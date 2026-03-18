@@ -9,8 +9,8 @@ from django.utils.translation import gettext_lazy as _
 # Module Identification
 MODULE_ID = "reports"
 MODULE_NAME = _("Reports")
-MODULE_ICON = "bar-chart-outline"
-MODULE_VERSION = "1.0.0"
+MODULE_ICON = 'material:work_history'
+MODULE_VERSION = '1.0.1'
 MODULE_CATEGORY = "reporting"
 
 # Sidebar Menu Configuration
