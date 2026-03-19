@@ -10,7 +10,9 @@ from django.utils.translation import gettext_lazy as _
 MODULE_ID = "reports"
 MODULE_NAME = _("Reports")
 MODULE_ICON = 'material:work_history'
-MODULE_VERSION = '1.0.1'
+MODULE_VERSION = '1.0.2'
+MODULE_DESCRIPTION = _('Custom reports, dashboards, and data visualization')
+MODULE_AUTHOR = 'ERPlora'
 MODULE_CATEGORY = "reporting"
 
 # Sidebar Menu Configuration
