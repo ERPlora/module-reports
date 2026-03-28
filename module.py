@@ -67,3 +67,16 @@ PERMISSIONS = [
     ("export_reports", _("Can export reports")),
     ("view_employee_reports", _("Can view employee performance")),
 ]
+
+SCHEDULED_TASKS = [
+    {
+        'task': 'reports.generate_daily_summary',
+        'cron': '0 2 * * *',
+        'description': 'Generate daily sales and performance summary',
+    },
+    {
+        'task': 'reports.generate_weekly_report',
+        'cron': '0 8 * * 1',
+        'description': 'Generate weekly business report',
+    },
+]
