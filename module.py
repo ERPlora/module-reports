@@ -14,6 +14,7 @@ MODULE_VERSION = '1.0.2'
 MODULE_DESCRIPTION = _('Custom reports, dashboards, and data visualization')
 MODULE_AUTHOR = 'ERPlora'
 MODULE_CATEGORY = "reporting"
+HAS_MODELS = False
 
 # Sidebar Menu Configuration
 MENU = {
